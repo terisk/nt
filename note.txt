@@ -1,0 +1,22 @@
+查看历史提交的目录树
+ git ls-tree <tree-ish> <paths>  
+例：git ls-tree d06b1cf09d2 test.txt   
+git ls-tree -r refs/tags/D doc
+整个工作区切换到历史版本：
+ git checkout <commit>  例：git checkout HEAD^^
+检出某个文件的历史版本： git checkout <commit> <paths>  
+例： git checkout refs/tags/D — test.txt        
+git checkout d06b1cf09d2 — doc
+检出某个文件的历史版本到其他文件名： 
+git show <commit>:<file> new_name 
+例：git show d06b1cf09d2:text.txt > test1.txt
+
+
+# script -t 2> test.time -a test.txt    # 录制，存入历史到test.txt
+... ...
+# exit                                  # 退出录制
+# scriptreplay test.time test.txt       # 终端回放
+
+
+declare -x LANG="zh_CN.UTF-8"
+declare -x LANGUAGE="zh_CN:en_US:en"
