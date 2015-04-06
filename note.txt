@@ -20,3 +20,139 @@ git show <commit>:<file> new_name
 
 declare -x LANG="zh_CN.UTF-8"
 declare -x LANGUAGE="zh_CN:en_US:en"
+
+#!git config [--local] user.name "new name"
+git config user.email "new@email.com"
+
+This do change in .git/config
+
+With --global option it makes change to ~/.gitconfig
+
+#! change the author and committer
+git commit --amend --reset-author
+
+#->
+When M-x semantic-mode to toggle on semantic mode, alway get a error 
+
+Debugger entered--Lisp error: (wrong-type-argument stringp 1)
+string-match("\n" 1 0)
+split-string(1 "\n")
+semantic-cpp-defs(1)
+semantic-gcc-setup()
+byte-code("\306\307 BC\310\311...")
+semantic-default-c-setup()
+run-hooks(c-mode-common-hook c-mode-hook)
+apply(run-hooks (c-mode-common-hook c-mode-hook))
+run-mode-hooks(c-mode-common-hook c-mode-hook)
+c-mode()
+
+SOLVED: This issue is solved now. I haven't installed g++ compiler. The issue is because of this. Installing g++ compiler solved this issue. Thanks to the support of David Engster from cedet-dlevel mailing list.
+These lines are hints for debugging (where the code following the line actually came from)
+
+
+#
+when close a buffer, display the preverse buffer despite the suffix of the buffer.
+
+#hack
+If you want see what is included in a system header file, just include the header file, then
+gcc -o /tmp/tmp.i -E -P /tmp.c
+-E option tell gcc to stop after prepression
+
+# line-number "source-file" [flags]
+Meaning of flags (space separated):
+
+1 - Start of a new file
+2 - Returning to previous file
+3 - Following text comes from a system header file (#include <> vs #include "")
+4 - Following text should be treated as being wrapped in an implicit extern "C" block.
+
+
+#todo
+make LC_ALL to english envirenment 
+
+#todo
+C-z is bound to (suspent-frame) which do not often used. global unbound id, and let tmux use C-z as prefix key.
+
+#->
+$sudo xinit xeyes -display :1 -geometry -0-0 -- /usr/bin/X :1
+
+if want to start X server only, just type /usr/bin/X NOT "X"
+
+
+#todo
+find a way to convert picture to 0-1 bitmap, then can be used to custom curser in X window
+
+#->
+use my PC as develop workstation
+sudo apt-get install libgtk-3-dev 
+some dependence do not OK
+and a change the apt source to 163's mirror, things get done.
+
+#->
+gtk warning cannot open display
+
+run mine_gtk after i manuallty started /usr/bin/X got the above error
+
+Just add DISPLAY environment variable can solve this problem.
+
+so do firefox
+
+It amazing that we can use firefox after only start X server.
+
+#? 
+Is the files under git control must be in the subfolder of .git
+
+A TAG should include TIME PROJECT{emacs lisp or kernel} TYPE{BUG TIPS TODO}
+
+#->
+   Because cons cells are so central to Lisp, we also have a word for
+"an object which is not a cons cell".  These objects are called "atoms".
+
+ sequeue-> list
+	   array->string
+		  vector
+
+
+
+               _____________________________________________
+              |                                             |
+              |          Sequence                           |
+              |  ______   ________________________________  |
+              | |      | |                                | |
+              | | List | |             Array              | |
+              | |      | |    ________       ________     | |
+              | |______| |   |        |     |        |    | |
+              |          |   | Vector |     | String |    | |
+              |          |   |________|     |________|    | |
+              |          |  ____________   _____________  | |
+              |          | |            | |             | | |
+              |          | | Char-table | | Bool-vector | | |
+              |          | |____________| |_____________| | |
+              |          |________________________________| |
+              |_____________________________________________|
+
+
+   Evaluation of the macro call begins like evaluation of a function
+call except for one crucial difference: the macro arguments are the
+actual expressions appearing in the macro call.  They are not evaluated
+before they are given to the macro definition.  By contrast, the
+arguments of a function are results of evaluating the elements of the
+function call list.
+
+
+#!Creating Project Pages manually
+git clone github.com/user/repository.git
+
+git checkout --orphan gh-pages
+# Creates our branch, without any parents (it's an orphan!)
+# Switched to a new branch 'gh-pages'
+
+git rm -rf .
+# Remove all files from the old working tree
+# rm '.gitignore'
+
+echo "My Page" > index.html
+git add index.html
+git commit -a -m "First pages commit"
+git push origin gh-pages
+
